@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=soft&color=0:0f0c29,50:302b63,100:24243e&height=180&section=header&text=Robótica%20UNAL%20•%20Lab%2001&fontSize=36&desc=Trayectorias,%20E/S%20Digitales%20y%20Calibración%20•%20ABB%20IRB140&descSize=14&animation=twinkle" width="100%" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:89f7fe,100:66a6ff&height=180&section=header&text=Robótica%20UNAL%20•%20Lab%2001&fontSize=36&desc=Trayectorias,%20E/S%20Digitales%20y%20Calibración%20•%20ABB%20IRB140&descSize=14&animation=twinkle" width="100%" />
 </div>
 
 ---
