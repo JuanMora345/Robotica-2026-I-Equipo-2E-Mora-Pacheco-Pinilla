@@ -1,7 +1,7 @@
 <div align="center">
 
 <!-- ═══════════════════════  COSMIC HEADER  ═══════════════════════ -->
-<img src="https://capsule-render.vercel.app/api?type=venom&color=0:0a0a1a,30:0d0d2b,60:1a0533,100:0a0a1a&height=220&section=header&text=robotic-ABB%20%E2%80%A2%20RobotStudio&fontSize=38&fontColor=00F5FF&desc=Laboratorio%20No.%2001%20%E2%80%A2%20ABB%20IRB140%20%E2%80%A2%20Trayectorias%20%26%20I%2FO%20Digitales&descSize=15&descAlignY=75&fontAlignY=45&animation=twinkling&stroke=7B2FBE&strokeWidth=2" width="100%" />
+<img src="https://capsule-render.vercel.app/api?type=waving&amp;color=0:0a0a1a,30:0d0d2b,60:1a0533,100:0d003b&amp;height=220&amp;section=header&amp;text=robotic-ABB%20%E2%80%A2%20RobotStudio&amp;fontSize=38&amp;fontColor=00F5FF&amp;desc=Laboratorio%20No.%2001%20%E2%80%A2%20ABB%20IRB140%20%E2%80%A2%20Trayectorias%20%26%20I%2FO%20Digitales&amp;descSize=15&amp;descAlignY=75&amp;fontAlignY=45&amp;animation=twinkling&amp;stroke=7B2FBE&amp;strokeWidth=2" width="100%" />
 
 <!-- ═══════════════════════  BADGE ROW  ════════════════════════════ -->
 
@@ -323,7 +323,7 @@ Este proyecto está bajo la licencia indicada en [`LICENSE`](./LICENSE).
 
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=venom&color=0:0a0a1a,30:1a0533,60:0d0d2b,100:0a0a1a&height=120&section=footer&text=LabSIR%20%E2%80%A2%20Robótica%20Industrial%202026-I&fontSize=18&fontColor=7B2FBE&animation=twinkling" width="100%" />
+<img src="https://capsule-render.vercel.app/api?type=waving&amp;color=0:0d003b,30:1a0533,60:0d0d2b,100:0a0a1a&amp;height=120&amp;section=footer&amp;text=LabSIR%20%E2%80%A2%20Rob%C3%B3tica%20Industrial%202026-I&amp;fontSize=18&amp;fontColor=7B2FBE&amp;animation=twinkling" width="100%" />
 
 ![Last updated](https://img.shields.io/badge/Last%20updated-2026-FF006E?style=flat-square&labelColor=0a0a1a)
 ![Universidad](https://img.shields.io/badge/Universidad%20Nacional%20de%20Colombia-FFD700?style=flat-square&labelColor=0a0a1a)
