@@ -1,7 +1,9 @@
 <div align="center">
 
 <!-- ═══════════════════════  COSMIC HEADER  ═══════════════════════ -->
-<img src="https://capsule-render.vercel.app/api?type=waving&amp;color=0:0a0a1a,30:0d0d2b,60:1a0533,100:0d003b&amp;height=220&amp;section=header&amp;text=robotic-ABB%20%E2%80%A2%20RobotStudio&amp;fontSize=38&amp;fontColor=00F5FF&amp;desc=Laboratorio%20No.%2001%20%E2%80%A2%20ABB%20IRB140%20%E2%80%A2%20Trayectorias%20%26%20I%2FO%20Digitales&amp;descSize=15&amp;descAlignY=75&amp;fontAlignY=45&amp;animation=twinkling&amp;stroke=7B2FBE&amp;strokeWidth=2" width="100%" />
+
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:89f7fe,100:66a6ff&height=180&section=header&text=Robótica%20UNAL%20•%20Lab%2001&fontSize=36&desc=Trayectorias,%20E/S%20Digitales%20y%20Calibración%20•%20ABB%20IRB140&descSize=14&animation=twinkle" width="100%" />
+
 
 <!-- ═══════════════════════  BADGE ROW  ════════════════════════════ -->
 
