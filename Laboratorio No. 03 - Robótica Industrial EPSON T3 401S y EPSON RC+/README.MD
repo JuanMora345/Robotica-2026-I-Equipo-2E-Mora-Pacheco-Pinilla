@@ -317,7 +317,7 @@ Las trayectorias se diseñaron en **Fusion 360** combinando texto vectorizado y 
 
 ## 📜 Licencia
 
-Este proyecto está bajo la licencia indicada en [`LICENSE`](./LICENSE).
+Este proyecto está bajo la licencia indicada en [`LICENSE`].
 
 ---
 
