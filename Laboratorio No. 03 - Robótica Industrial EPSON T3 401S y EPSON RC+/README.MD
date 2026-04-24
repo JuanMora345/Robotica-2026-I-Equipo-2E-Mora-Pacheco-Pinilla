@@ -5,11 +5,11 @@
 
 <!-- ═══════════════════════  BADGE ROW  ════════════════════════════ -->
 
-[![RobotStudio](https://img.shields.io/badge/RobotStudio-≥5.0-00F5FF?style=for-the-badge&logo=abb&logoColor=white&labelColor=0a0a1a)](https://new.abb.com/products/robotics/robotstudio)
-[![Robot](https://img.shields.io/badge/Robot-ABB%20IRB140-7B2FBE?style=for-the-badge&logo=robot-framework&logoColor=white&labelColor=0a0a1a)](https://new.abb.com/products/robotics/robots/articulated-robots/irb-140)
-[![RAPID](https://img.shields.io/badge/Language-RAPID-FF006E?style=for-the-badge&logoColor=white&labelColor=0a0a1a)](https://library.e.abb.com/public/688894b98123f87bc1257cc50044e809/Technical%20reference%20manual_RAPID_3HAC16581-1_revJ_en.pdf)
-[![CAD](https://img.shields.io/badge/CAD-Fusion%20360-FFD700?style=for-the-badge&logo=autodesk&logoColor=black&labelColor=0a0a1a)](https://www.autodesk.com/products/fusion-360)
-[![License](https://img.shields.io/badge/License-MIT-00F5FF?style=for-the-badge&labelColor=0a0a1a)](./LICENSE)
+<a href="https://new.abb.com/products/robotics/robotstudio"><img src="https://img.shields.io/badge/RobotStudio-%E2%89%A55.0-00F5FF?style=for-the-badge&amp;logo=abb&amp;logoColor=white&amp;labelColor=0a0a1a" /></a>
+<a href="https://new.abb.com/products/robotics/robots/articulated-robots/irb-140"><img src="https://img.shields.io/badge/Robot-ABB%20IRB140-7B2FBE?style=for-the-badge&amp;logoColor=white&amp;labelColor=0a0a1a" /></a>
+<a href="https://library.e.abb.com/public/688894b98123f87bc1257cc50044e809/Technical%20reference%20manual_RAPID_3HAC16581-1_revJ_en.pdf"><img src="https://img.shields.io/badge/Language-RAPID-FF006E?style=for-the-badge&amp;logoColor=white&amp;labelColor=0a0a1a" /></a>
+<a href="https://www.autodesk.com/products/fusion-360"><img src="https://img.shields.io/badge/CAD-Fusion%20360-FFD700?style=for-the-badge&amp;logo=autodesk&amp;logoColor=black&amp;labelColor=0a0a1a" /></a>
+<a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-00F5FF?style=for-the-badge&amp;labelColor=0a0a1a" /></a>
 
 </div>
 
@@ -278,7 +278,7 @@ Las trayectorias se diseñaron en **Fusion 360** combinando texto vectorizado y 
 
 <div align="center">
 
-[![Ver en YouTube](https://img.shields.io/badge/▶%20Ver%20video-YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white&labelColor=0a0a1a)](https://youtu.be/sByrkLONEk4)
+<a href="https://youtu.be/sByrkLONEk4"><img src="https://img.shields.io/badge/%E2%96%B6%20Ver%20video-YouTube-FF0000?style=for-the-badge&amp;logo=youtube&amp;logoColor=white&amp;labelColor=0a0a1a" /></a>
 
 > El video debe iniciar con la **introducción oficial del laboratorio LabSIR** e incluir tanto la simulación en RobotStudio como la implementación con el robot real.
 
@@ -308,8 +308,8 @@ Las trayectorias se diseñaron en **Fusion 360** combinando texto vectorizado y 
 
 | Integrante | GitHub |
 |---|---|
-| **Samuel David Sanchez Cardenas** | [![GitHub](https://img.shields.io/badge/GitHub-%40samsanchezcar-00F5FF?style=for-the-badge&logo=github&logoColor=white&labelColor=0a0a1a)](https://github.com/samsanchezcar) |
-| **Santiago Ávila** | [![GitHub](https://img.shields.io/badge/GitHub-Santiago%20%C3%81vila-7B2FBE?style=for-the-badge&logo=github&logoColor=white&labelColor=0a0a1a)](https://github.com/search?q=Santiago+Avila) |
+| **Samuel David Sanchez Cardenas** | <a href="https://github.com/samsanchezcar"><img src="https://img.shields.io/badge/GitHub-%40samsanchezcar-00F5FF?style=for-the-badge&amp;logo=github&amp;logoColor=white&amp;labelColor=0a0a1a" /></a> |
+| **Santiago Ávila** | <a href="https://github.com/search?q=Santiago+Avila"><img src="https://img.shields.io/badge/GitHub-Santiago%20%C3%81vila-7B2FBE?style=for-the-badge&amp;logo=github&amp;logoColor=white&amp;labelColor=0a0a1a" /></a> |
 
 </div>
 
@@ -325,7 +325,7 @@ Este proyecto está bajo la licencia indicada en [`LICENSE`](./LICENSE).
 
 <img src="https://capsule-render.vercel.app/api?type=waving&amp;color=0:0d003b,30:1a0533,60:0d0d2b,100:0a0a1a&amp;height=120&amp;section=footer&amp;text=LabSIR%20%E2%80%A2%20Rob%C3%B3tica%20Industrial%202026-I&amp;fontSize=18&amp;fontColor=7B2FBE&amp;animation=twinkling" width="100%" />
 
-![Last updated](https://img.shields.io/badge/Last%20updated-2026-FF006E?style=flat-square&labelColor=0a0a1a)
-![Universidad](https://img.shields.io/badge/Universidad%20Nacional%20de%20Colombia-FFD700?style=flat-square&labelColor=0a0a1a)
+<img src="https://img.shields.io/badge/Last%20updated-2026-FF006E?style=flat-square&amp;labelColor=0a0a1a" />
+<img src="https://img.shields.io/badge/Universidad%20Nacional%20de%20Colombia-FFD700?style=flat-square&amp;labelColor=0a0a1a" />
 
 </div>
