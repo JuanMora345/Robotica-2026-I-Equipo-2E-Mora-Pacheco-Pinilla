@@ -112,7 +112,7 @@ El objetivo es **automatizar el trazado de nombres y decoración** sobre una tor
 
 ## 🔁 Diagrama de flujo y plano de planta
 
-> flowchart TD
+flowchart TD
     A([Inicio del programa]) --> B[Limpiar FlexPendant con TPErase]
     B --> C[Mostrar mensaje: SISTEMA INICIADO]
     C --> D[Mover robot a Home_ABS]
