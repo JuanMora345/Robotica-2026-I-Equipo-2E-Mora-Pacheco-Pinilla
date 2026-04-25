@@ -112,8 +112,57 @@ El objetivo es **automatizar el trazado de nombres y decoración** sobre una tor
 
 ## 🔁 Diagrama de flujo y plano de planta
 
-> 🚧 **Próximamente** — El diagrama de flujo (Mermaid / SVG) y el plano de planta del laboratorio serán añadidos en una iteración posterior de este README.
+> flowchart TD
+    A([Inicio del programa]) --> B[Limpiar FlexPendant con TPErase]
+    B --> C[Mostrar mensaje: SISTEMA INICIADO]
+    C --> D[Mover robot a Home_ABS]
+    D --> E[Apagar DO_01, DO_02, FWD_Conveyor y BWD_Conveyor]
+    E --> F{{Ciclo principal WHILE TRUE}}
 
+    F --> G{¿DI_03 = 1?}
+    G -- Sí --> H[Activar BWD_Conveyor]
+    H --> I[Esperar 4.275 s]
+    I --> J[Apagar FWD_Conveyor y BWD_Conveyor]
+    J --> K{Evaluar entradas DI_01 y DI_02}
+    G -- No --> K
+
+    K --> L{¿DI_01 = 1 y DI_02 = 0?}
+    L -- Sí --> M[Mostrar: MOVIENDO CAJA]
+    M --> N[Activar FWD_Conveyor]
+    N --> O[Activar DO_01]
+    O --> P[Esperar 4.275 s]
+    P --> Q[Apagar FWD_Conveyor]
+    Q --> R[Mostrar: CAJA EN POSICION - INICIANDO GRABADO]
+    R --> S[Ejecutar Path_aprox]
+    S --> T[Ejecutar Path_duvan]
+    T --> U[Ejecutar Path_mora]
+    U --> V[Ejecutar Path_gusta]
+    V --> W[Ejecutar Path_robot]
+    W --> X[Ejecutar Path_220]
+    X --> Y[Ejecutar Path_home]
+    Y --> Z[Apagar DO_01]
+    Z --> F
+
+    L -- No --> AA{¿DI_01 = 0 y DI_02 = 1?}
+    AA -- Sí --> AB[Activar DO_02]
+    AB --> AC[Mostrar: RUTINA CAMBIO DE HERRAMIENTA]
+    AC --> AD[Mover robot a Mantenimiento_Point]
+    AD --> AE[Mostrar advertencia de operario cerca a herramienta]
+    AE --> AF[Esperar DI_01 = 1]
+    AF --> AG[Esperar DI_02 = 1]
+    AG --> AH[Apagar DO_02]
+    AH --> AI[Mostrar: REANUDANDO PROGRAMA]
+    AI --> AJ[Esperar 3 s]
+    AJ --> AK[Mover robot a Home_ABS]
+    AK --> F
+
+    AA -- No --> AL{¿DI_01 = 0 y DI_02 = 0?}
+    AL -- Sí --> AM[Mostrar: ESPERANDO INSTRUCCIONES]
+    AM --> F
+
+    AL -- No --> AN{¿DI_01 = 1 y DI_02 = 1?}
+    AN -- Sí --> AO[Mostrar ERROR: no presionar ambas entradas al tiempo]
+    AO --> F
 Los archivos finales estarán disponibles en:
 - `Diagrams/Flowchart_lab1.svg` — Diagrama de flujo de acciones del robot
 - `Diagrams/Plant_Plan.pdf` — Plano de planta con ubicación de todos los elementos
