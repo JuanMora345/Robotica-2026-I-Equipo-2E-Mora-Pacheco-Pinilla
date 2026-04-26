@@ -179,63 +179,82 @@ Los archivos finales estarán disponibles en:
 
 ## ⚙️ Funciones RAPID utilizadas
 
-> Las siguientes instrucciones y procedimientos describen la lógica de programación desde el punto de vista de su **aplicación práctica en banco**, sin exponer el código fuente directamente.
+> Las siguientes instrucciones y procedimientos describen la lógica de programación desde el punto de vista de su **aplicación práctica en banco**, sin exponer el código fuente directamente. Todo lo documentado aquí corresponde fielmente al módulo `Module1.mod` ejecutado en el laboratorio.
 
 ### Primitivas de movimiento
 
 <details>
-<summary><b>MoveJ — Movimiento articular</b></summary>
+<summary><b>MoveAbsJ — Movimiento articular absoluto</b></summary>
 
-- **Qué hace:** mueve el robot actuando sobre sus ejes en el espacio articular, sin garantizar trayectoria cartesiana recta.
-- **Cómo se aplica:** desplazamientos rápidos hacia posiciones seguras (`Home`, `Maintenance`) y transiciones entre zonas de trabajo. No se usa durante el trazado.
-- **Parámetros clave:** velocidad (`v500`–`v1000`), zona de aproximación (`z10`–`z100`).
+- **Qué hace:** lleva el robot a una posición definida por ángulos articulares exactos (`jointtarget`), independiente del TCP o WorkObject activo.
+- **Cómo se aplica:** se usa exclusivamente para las posiciones `Home_ABS` (todos los ejes en 0° excepto eje 5 en 30°) y `Mantenimiento_Point` (eje 1 en 90°). Garantiza que el robot siempre regrese a la misma pose de referencia sin ambigüedades de configuración.
+- **Parámetros usados:** `v300` y `v100` según la urgencia; zona `z1`; herramienta `tool0`.
 
 </details>
 
 <details>
 <summary><b>MoveL — Movimiento lineal</b></summary>
 
-- **Qué hace:** desplaza la herramienta en línea recta manteniendo orientación constante del TCP.
-- **Cómo se aplica:** trazado de segmentos rectos en letras y contornos, posicionamiento preciso sobre el `WorkObject`. Velocidades bajas (`v100`–`v300`) y zona `z10` para máxima precisión.
-- **Restricción del laboratorio:** velocidad entre 100 y 1000; zona máxima `z10`.
+- **Qué hace:** desplaza el TCP en línea recta manteniendo orientación constante en el espacio cartesiano.
+- **Cómo se aplica:** es la instrucción principal de todo el trazado. Se emplea en los procedimientos de aproximación (`Path_aprox`) y en cada uno de los paths de letras y decoración (`Path_D`, `Path_U1`, `Path_V`, `Path_A1`, `Path_N`, `Path_M`, `Path_O`, `Path_R`, `Path_A2`, `Path_G`, `Path_U2`, `Path_s`, `Path_T`, `Path_A3`, `Path_cara`, `Path_ojo1`, `Path_ojo2`, `Path_boca1/2/3`). Cada `MoveL` referencia la herramienta `MarcadorVirtual` y el WorkObject `wobj_JMora`.
+- **Parámetros usados:** `v60` mm/s durante el trazado; `v100` en aproximaciones; zona `z1` en todos los casos para máxima precisión de contorno.
 
 </details>
 
-<details>
-<summary><b>MoveC — Movimiento circular</b></summary>
-
-- **Qué hace:** genera trayectorias en arco circular entre tres puntos (inicio, vía, destino).
-- **Cómo se aplica:** ejecución de curvas y decoraciones circulares, manteniendo continuidad de trayectoria con los `MoveL` adyacentes.
-
-</details>
+> **Nota:** `MoveC` no fue utilizado en este proyecto. Todas las curvas y contornos se aproximaron mediante secuencias densas de `MoveL` generadas desde Fusion 360, logrando la suavidad requerida sin necesidad de arcos explícitos.
 
 ### Control de I/O y temporización
 
-| Instrucción | Función | Aplicación en la práctica |
+| Instrucción | Función | Aplicación real en el código |
 |---|---|---|
-| `SetDO` | Activa/desactiva salida digital | Enciende/apaga conveyor y luces de estado |
-| `WaitDI` | Espera hasta que una entrada digital cambie de estado | Aguarda señal del operador para iniciar decorado |
-| `WaitTime` | Pausa la ejecución por intervalo definido | Sincroniza arranque del conveyor con posición de pieza |
-| `Set` / `Reset` | Forma alternativa de controlar salidas | Control de indicadores luminosos en el panel |
+| `Set` | Activa una salida digital a 1 | Enciende `FWD_Conveyor` para avanzar la banda y `DO_01` como indicador de ciclo activo |
+| `Reset` | Desactiva una salida digital a 0 | Apaga `FWD_Conveyor`, `BWD_Conveyor`, `DO_01` y `DO_02` al inicio y al finalizar cada ciclo |
+| `WaitTime` | Pausa la ejecución por un tiempo fijo | Se usa con `4.275 s` para dar tiempo a que la torta viaje hasta la posición de marcado y para la rutina de retroceso del conveyor |
+| `WaitDI` | Espera hasta que una entrada digital valga 1 | En la rutina de mantenimiento: el programa queda suspendido hasta que **ambas** entradas `DI_01` y `DI_02` se activen simultáneamente antes de reanudar |
+| `TPErase` / `TPWrite` | Borra y escribe mensajes en el FlexPendant | Retroalimentación al operador en cada etapa: inicio, estado del conveyor, posición de la caja, advertencias de seguridad y fin de ciclo |
+
+### Lógica de control: estructura `WHILE TRUE` con `IF/ELSEIF`
+
+El `main()` implementa una **máquina de estados de ciclo continuo** basada en la lectura simultánea de `DI_01` y `DI_02`:
+
+| Estado de entradas | Acción ejecutada |
+|---|---|
+| `DI_01=1`, `DI_02=0` | Ciclo de producción: enciende conveyor → espera 4.275 s → ejecuta trazado completo → retorna a Home |
+| `DI_01=0`, `DI_02=1` | Rutina de mantenimiento: mueve a `Mantenimiento_Point`, emite advertencias, espera confirmación doble (`WaitDI` en ambas entradas) antes de reanudar |
+| `DI_01=0`, `DI_02=0` | Estado de espera: muestra mensaje "ESPERANDO INSTRUCCIONES" sin mover el robot |
+| `DI_01=1`, `DI_02=1` | Estado de error: muestra mensaje de error, no ejecuta ninguna acción de movimiento |
 
 ### Procedimientos / bloques funcionales
 
 | Procedimiento | Rol | Descripción práctica |
 |---|---|---|
-| `main()` | Supervisor y coordinador | Máquina de estados: lee entradas, dispara rutinas de decorado o mantenimiento |
-| `P_Home()` | Posición de referencia global | Todos los ángulos articulares en 0°; inicio y fin de cada ciclo |
-| `P_Maintenance()` | Posición de intervención | Robot en pose accesible para instalar/desinstalar herramienta |
-| `MARK_A()` | Decorado en `WObj_Torta_A` | Ejecuta trayectorias de nombre + decoración en cuadrante x+, y+ |
-| `MARK_B()` | Decorado en `WObj_Torta_B` | Reutiliza trayectorias reeferenciando el segundo WorkObject |
-| `P_Names()` | Trazado de nombres | Subtrayectorias modulares para cada nombre del equipo |
-| `P_Decoration()` | Trazado de decoración | Figura/ícono personalizado del equipo |
+| `main()` | Supervisor y coordinador | Bucle infinito con lógica de estados según `DI_01`/`DI_02`; gestiona conveyor, trazado y mantenimiento |
+| `Path_aprox()` | Aproximación segura | Lleva el robot desde `Target_home` hasta `Target_aprox2` en dos pasos a `v100`; establece la posición de entrada al WorkObject |
+| `Path_home()` | Retorno a referencia | Movimiento único a `Target_home`; separa la herramienta de la superficie antes de cualquier desplazamiento largo |
+| `Path_duvan()` | Nombre "DUVAN" | Orquesta en secuencia: `Path_D` → `Path_U1` → `Path_V` → `Path_A1` → `Path_N` con paths de transición entre letras |
+| `Path_mora()` | Nombre "MORA" | Orquesta: `Path_M` → `Path_O` → `Path_R` → `Path_A2` con sus respectivas transiciones |
+| `Path_gusta()` | Nombre "GUSTA" | Orquesta: `Path_G` → `Path_U2` → `Path_s` → `Path_T` → `Path_A3` |
+| `Path_robot()` | Decoración tipo robot | Orquesta: `Path_cara` → `Path_ojo1` → `Path_ojo2` → `Path_boca1` → `Path_boca2` → `Path_boca3` |
+| `Path_cara/ojo1/ojo2/boca1/2/3` | Sub-trayectorias de la figura | Cada una traza un componente independiente de la decoración usando `MoveL` con `wobj_JMora` |
+| `Path_70` … `Path_220` | Transiciones entre letras/figuras | Paths de 2 puntos que elevan la herramienta y la reposicionan en el punto de entrada de la siguiente letra sin trazar |
+| `Path_220()` | Cierre del ciclo de trazado | Último movimiento: regresa desde el WorkObject de trazado hasta `Target_aprox1` en el sistema `wobj0` antes del `Path_home` |
+
+### Variables de datos relevantes
+
+| Variable | Tipo | Descripción |
+|---|---|---|
+| `MarcadorVirtual` | `tooldata` | TCP calibrado de la herramienta marcador — offset real medido con técnica de 4 puntos |
+| `wobj_JMora` | `wobjdata` | WorkObject que define el sistema de coordenadas de la superficie de trazado (torta/pieza) |
+| `Home_ABS` | `jointtarget` | Posición de reposo: `[0,0,0,0,30,0]` — todos los ejes en 0° excepto eje 5 |
+| `Mantenimiento_Point` | `jointtarget` | Posición de mantenimiento: `[90,0,0,0,30,0]` — eje 1 girado 90° para acceso del operador |
+| `Target_home` | `robtarget` | Punto cartesiano de referencia sobre `wobj0` desde donde parten y terminan todas las rutas |
+| `Target_aprox1/2` | `robtarget` | Puntos de aproximación intermedios que evitan singularidades al entrar al WorkObject de trazado |
 
 ### Ruta del módulo RAPID
 
 ```
 RS/robotic-ABB-Cake/Controller Data/IRB140_6_81/RAPID/TASK1/PROGMOD/Module1.mod
 ```
-
 ---
 
 ## 🛠️ Diseño de la herramienta — *Marker*
