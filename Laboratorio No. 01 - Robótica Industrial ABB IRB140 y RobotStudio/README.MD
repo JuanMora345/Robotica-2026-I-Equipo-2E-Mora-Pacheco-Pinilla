@@ -241,7 +241,7 @@ RS/robotic-ABB-Cake/Controller Data/IRB140_6_81/RAPID/TASK1/PROGMOD/Module1.mod
 
 ## 🛠️ Diseño de la herramienta — *Marker*
 
-> 📂 Archivos disponibles en [`Design/`](./Design/): planos PDF, modelos Fusion 360 (`.f3d`), exportaciones STL/SAT y ensambles completos.
+> 📂 Archivos disponibles en [`Design/`](./Design/): planos PDF de la herramienta diseñada.
 
 ### Descripción general
 
