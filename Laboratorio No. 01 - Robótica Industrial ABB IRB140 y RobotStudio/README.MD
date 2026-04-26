@@ -173,8 +173,7 @@ flowchart TD
 ```
 
 Los archivos finales estarán disponibles en:
-- `Diagrams/Flowchart_lab1.svg` — Diagrama de flujo de acciones del robot
-- `Diagrams/Plant_Plan.pdf` — Plano de planta con ubicación de todos los elementos
+- `Laboratorio No. 01 - Robótica Industrial ABB IRB140 y RobotStudio/Diagrams/Ensamblaje Planta.pdf` — Plano de planta con ubicación de todos los elementos
 
 ---
 
