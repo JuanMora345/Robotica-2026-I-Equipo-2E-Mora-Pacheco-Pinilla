@@ -253,7 +253,7 @@ El `main()` implementa una **máquina de estados de ciclo continuo** basada en l
 ### Ruta del módulo RAPID
 
 ```
-RS/robotic-ABB-Cake/Controller Data/IRB140_6_81/RAPID/TASK1/PROGMOD/Module1.mod
+Laboratorio No. 01 - Robótica Industrial ABB IRB140 y RobotStudio/Lab01Robotica/Controller Data/IRB140_6_81/RAPID/TASK1/PROGMOD/Module1.mod
 ```
 ---
 
