@@ -331,9 +331,6 @@ El robot traza en total cuatro elementos sobre la torta:
 | Decoración **Robot** | `Path_robot()` | Figura con cara, dos ojos y boca |
 
 Cada letra está compuesta por una secuencia densa de instrucciones `MoveL` a **60 mm/s** que aproximan las curvas y contornos sin necesidad de usar `MoveC`. Las transiciones entre letras se realizan mediante paths de 2 puntos (`Path_70` a `Path_220`) que elevan la herramienta de la superficie y la reposicionan en el punto de entrada de la siguiente letra sin dejar trazo.
-> 📷 Vista previa de las trayectorias diseñadas:
-
-![Trayectorias](Sources/Trayectory%20Design.png)
 
 ---
 
@@ -360,10 +357,6 @@ Cada letra está compuesta por una secuencia densa de instrucciones `MoveL` a **
 ---
 
 ## 🖼 Previews
-
-**Simulación en RobotStudio**
-
-![Simulación](Sources/Simulation.gif)
 
 **Ejecución real en banco**
 
