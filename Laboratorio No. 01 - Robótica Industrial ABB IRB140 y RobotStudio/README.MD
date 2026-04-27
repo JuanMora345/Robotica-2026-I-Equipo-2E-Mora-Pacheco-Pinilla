@@ -36,18 +36,17 @@
 
 | # | Sección |
 |---|---------|
-| 1 | [🗂 Estructura del repositorio](#-estructura-del-repositorio) |
-| 2 | [📘 Descripción detallada de la solución](#-descripción-detallada-de-la-solución) |
-| 3 | [🔁 Diagrama de flujo y plano de planta](#-diagrama-de-flujo-y-plano-de-planta) |
-| 4 | [⚙️ Funciones RAPID utilizadas](#️-funciones-rapid-utilizadas) |
-| 5 | [🛠️ Diseño de la herramienta — *Marker*](#️-diseño-de-la-herramienta--marker) |
-| 6 | [🎯 WorkObjects y calibración](#-workobjects-y-calibración) |
-| 7 | [🔌 Entradas y Salidas Digitales](#-entradas-y-salidas-digitales) |
-| 8 | [🚌 Control del conveyor](#-control-del-conveyor) |
-| 9 | [✏️ Diseño de trayectorias](#️-diseño-de-trayectorias) |
-| 10 | [🎥 Video de simulación e implementación](#-video-de-simulación-e-implementación) |
-| 11 | [🖼 Previews](#-previews) |
-| 12 | [🧾 Autores](#-autores) |
+| 1 | [📘 Descripción detallada de la solución](#-descripción-detallada-de-la-solución) |
+| 2 | [🔁 Diagrama de flujo y plano de planta](#-diagrama-de-flujo-y-plano-de-planta) |
+| 3 | [⚙️ Funciones RAPID utilizadas](#️-funciones-rapid-utilizadas) |
+| 4 | [🛠️ Diseño de la herramienta — *Marker*](#️-diseño-de-la-herramienta--marker) |
+| 5 | [🎯 WorkObjects y calibración](#-workobjects-y-calibración) |
+| 6 | [🔌 Entradas y Salidas Digitales](#-entradas-y-salidas-digitales) |
+| 7 | [🚌 Control del conveyor](#-control-del-conveyor) |
+| 8 | [✏️ Diseño de trayectorias](#️-diseño-de-trayectorias) |
+| 9 | [🎥 Video de simulación e implementación](#-video-de-simulación-e-implementación) |
+| 10 | [🖼 Previews](#-previews) |
+| 11 | [🧾 Autores](#-autores) |
 
 ---
 
