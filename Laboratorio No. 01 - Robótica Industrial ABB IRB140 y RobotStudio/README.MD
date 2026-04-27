@@ -353,7 +353,7 @@ Las trayectorias se diseñaron en **Fusion 360** combinando texto vectorizado y 
 
 <div align="center">
 
-<img src="https://github.com/JuanMora345/Robotica-2026-I-Equipo-2E-Mora-Pacheco-Pinilla/edit/main/Laboratorio%20No.%2001%20-%20Rob%C3%B3tica%20Industrial%20ABB%20IRB140%20y%20RobotStudio/README.MD" alt="Resultados" />
+<img src="https://github.com/JuanMora345/Robotica-2026-I-Equipo-2E-Mora-Pacheco-Pinilla/blob/main/Laboratorio%20No.%2001%20-%20Rob%C3%B3tica%20Industrial%20ABB%20IRB140%20y%20RobotStudio/Lab01Robotica/Station/Preview.png" alt="Resultados" />
 
 </div>
 ---
