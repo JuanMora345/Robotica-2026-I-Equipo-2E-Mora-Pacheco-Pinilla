@@ -357,7 +357,11 @@ Cada letra está compuesta por una secuencia densa de instrucciones `MoveL` a **
 
 **Ejecución real en banco**
 
-![Real](Sources/LAB01GIF.gif)
+<div align="center">
+
+<img src="https://raw.githubusercontent.com/USUARIO/REPO/main/RUTA/AL/GIF/animacion.gif" alt="Demo" />
+
+</div>
 
 **Trayectoria dentro de RobotStudio**
 
