@@ -357,7 +357,7 @@ Cada letra está compuesta por una secuencia densa de instrucciones `MoveL` a **
 
 **Ejecución real en banco**
 
-![Real](Sources/Real.gif)
+![Real](Sources/LAB01GIF.gif)
 
 **Trayectoria dentro de RobotStudio**
 
