@@ -51,41 +51,7 @@
 
 ---
 
-## 🗂 Estructura del repositorio
 
-```
-robotic-ABB/
-│
-├─ 📁 ABB-Calibration/          ← Archivos de calibración de herramienta (TCP real vs RobotStudio)
-│
-├─ 📁 Design/                   ← Modelos CAD y planos de la herramienta Marker
-│   ├─ Marker_Base_Plane.pdf
-│   ├─ Assembly_Plane.pdf
-│   ├─ marker_tool.f3d           (Fusion 360)
-│   └─ marker_tool.stl           (para impresión 3D)
-│
-├─ 📁 Diagrams/                 ← Diagramas de flujo y plano de planta
-│   ├─ Flowchart_lab1.svg
-│   └─ Plant_Plan.pdf
-│
-├─ 📁 RS/                       ← Proyecto RobotStudio
-│   └─ robotic-ABB-Cake/
-│       └─ Controller Data/IRB140_6_81/RAPID/TASK1/PROGMOD/
-│           └─ Module1.mod       (código RAPID principal)
-│
-├─ 📁 Sources/                  ← Multimedia: GIFs, imágenes de resultados
-│   ├─ Simulation.gif
-│   ├─ Real.gif
-│   └─ Results.png
-│
-├─ 📁 Zips/                     ← Paquetes exportados de RobotStudio (.rspag / .zip)
-│
-├─ Laboratorio_No_1.pdf         ← Guía oficial del laboratorio
-├─ README.md
-└─ LICENSE
-```
-
----
 
 ## 📘 Descripción detallada de la solución
 
@@ -386,7 +352,7 @@ Las trayectorias se diseñaron en **Fusion 360** combinando texto vectorizado y 
 
 **Resultados sobre la pieza**
 
-![Resultados](Sources/Results.png)
+![Resultados](Lab01Robotica/Station/Streams/Preview.png)
 
 ---
 
