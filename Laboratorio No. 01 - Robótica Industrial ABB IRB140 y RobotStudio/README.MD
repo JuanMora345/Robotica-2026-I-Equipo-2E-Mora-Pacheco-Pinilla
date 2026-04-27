@@ -252,60 +252,85 @@ La punta opera por **presión directa**: al posicionar el robot sobre la superfi
 
 ## 🎯 WorkObjects y calibración
 
-La práctica exige dos WorkObjects para reutilizar las mismas trayectorias en dos cuadrantes distintos sobre el conveyor:
+Se utilizó un único WorkObject llamado `wobj_JMora`, fijo a la celda (no al conveyor). Su calibración se realizó con el método estándar de **3 puntos de RobotStudio** (origen, punto en X positivo y punto en Y positivo), registrados en el módulo `Wobj_wobj_JMora.mod`. El resultado de la calibración arrojó el siguiente frame:
 
-| WorkObject | Cuadrante | Propósito |
-|---|---|---|
-| `WObj_Torta_A` | x(+), y(+) | Decorado principal — posición inicial de la torta |
-| `WObj_Torta_B` | x(+), y(−) | Réplica del decorado — posición final tras desplazamiento |
+```
+Posición: [235.598, -701.64, 652.646] mm
+Orientación (quaternión): [0.0133, -0.0188, 0.9997, 0.00148]
+Offset z respecto al plano: -20 mm
+```
 
-Todas las trayectorias de marcado se referencian al `WorkObject` activo, lo que permite recalibrar la posición de la torta sin reprogramar los paths.
+La herramienta `MarcadorVirtual` fue calibrada mediante el método de **4 puntos TCP** en banco real, registrados en `TCP_moratool2.mod`. El TCP resultante quedó definido en:
+
+```
+Posición TCP: [73.55, -0.008, 139.89] mm
+Orientación: [0.9659, -0.000004, 0.2588, -0.0000003]
+```
 
 ---
 
 ## 🔌 Entradas y Salidas Digitales
 
-Módulo utilizado: **DSQC 652** del controlador IRC5.
-
 ### Entradas digitales configuradas
 
 | Señal | Acción disparada |
 |---|---|
-| `DI_01` — Inicio de decorado | Inicia rutina completa de marking; enciende luz de indicación `DO_01` |
-| `DI_02` — Mantenimiento | Mueve robot a `P_Maintenance()`; apaga luz de indicación `DO_01` |
+| `DI_01` | Inicio de ciclo de decorado. Si `DI_02 = 0`: activa el conveyor, espera el tiempo de viaje y ejecuta la rutina completa de trazado |
+| `DI_02` | Rutina de mantenimiento. Si `DI_01 = 0`: mueve el robot a `Mantenimiento_Point` y aguarda confirmación doble antes de reanudar |
+| `DI_03` | Retroceso manual de la banda. Activa `BWD_Conveyor` durante 4.275 s y luego lo apaga, permitiendo devolver la torta a la posición inicial |
 
 ### Salidas digitales configuradas
 
 | Señal | Función |
 |---|---|
-| `DO_01` — Luz de indicación | ON durante proceso de decorado; OFF en reposo/mantenimiento |
-| `DO_02` — Control conveyor | Activa/desactiva la banda transportadora al final del decorado |
+| `DO_01` | Indicador de ciclo activo. Se enciende al iniciar el decorado y se apaga al finalizar |
+| `DO_02` | Indicador de modo mantenimiento. Se enciende al entrar a la rutina de mantenimiento y se apaga al reanudar operación normal |
+| `FWD_Conveyor` | Activa el movimiento de avance de la banda transportadora |
+| `BWD_Conveyor` | Activa el movimiento de retroceso de la banda transportadora |
+
+### Lógica de combinación de entradas
+
+| `DI_01` | `DI_02` | Estado del sistema |
+|---|---|---|
+| 1 | 0 | Ciclo de producción activo |
+| 0 | 1 | Modo mantenimiento |
+| 0 | 0 | Espera — sin acción |
+| 1 | 1 | Error — no se ejecuta ninguna acción |
 
 ---
 
 ## 🚌 Control del conveyor
 
-Para controlar el encendido/apagado de la banda transportadora, una salida digital del sistema (`DO_02`) se conecta a una entrada del **variador de frecuencia** que regula el motor.
+La banda transportadora es **bidireccional** y se controla mediante dos salidas digitales independientes: `FWD_Conveyor` para avance y `BWD_Conveyor` para retroceso. La forma exacta de conexión eléctrica entre el controlador y el motor de la banda no fue documentada en detalle durante la práctica.
 
-**Secuencia de operación:**
-1. La torta se coloca sobre el conveyor **antes** del inicio del ciclo.
-2. El robot ejecuta el decorado completo.
-3. Al finalizar, `SetDO DO_02, 1` activa el variador → la banda transporta la torta al extremo opuesto.
-4. `SetDO DO_02, 0` detiene el conveyor.
+**Secuencia de operación en ciclo normal:**
 
-> **Referencia del modelo de conveyor usado en simulación:**  
-> *Modular Belt Conveyor 1.2m* — https://grabcad.com/library/modular-belt-conveyor-1-2m-1
+1. El operador coloca la torta sobre la banda al inicio del ciclo.
+2. Al activar `DI_01`, el programa enciende `FWD_Conveyor` y `DO_01`.
+3. La banda avanza durante **4.275 s** — tiempo medido en banco real — hasta que la torta queda en la posición de trazado.
+4. Se apaga `FWD_Conveyor` y comienza la rutina de decorado.
+5. Al finalizar el decorado, el programa regresa el robot a `Home` y apaga `DO_01`.
+
+**Retroceso manual:**
+
+Si se activa `DI_03`, el sistema enciende `BWD_Conveyor` durante **4.275 s** para devolver la torta a la posición inicial y luego lo apaga automáticamente.
 
 ---
 
 ## ✏️ Diseño de trayectorias
 
-Las trayectorias se diseñaron en **Fusion 360** combinando texto vectorizado y geometrías personalizadas:
+Las trayectorias se diseñaron usando **Autodesk Inventor** como referencia visual para definir la geometría de cada letra y de la decoración. A partir de esa geometría se realizaron **extrusiones** para establecer los contornos del trazado. Los waypoints finales se colocaron **manualmente en RobotStudio**, punto por punto, ajustando cada posición sobre la superficie del WorkObject `wobj_JMora`.
 
-- **Nombres del equipo:** generados con la herramienta *Sketch Text*, vectorizados y exportados como contornos DXF para importar a RobotStudio.
-- **Decoración personalizada:** vectorización de imagen 2D con posterior extrusión y conversión a waypoints en RobotStudio.
-- **Restricciones aplicadas:** velocidad entre 100–1000 mm/s; zona máxima `z10`; trazo continuo desde `Home` hasta `Home`.
+El robot traza en total cuatro elementos sobre la torta:
 
+| Elemento | Procedimiento principal | Descripción |
+|---|---|---|
+| Nombre **DUVAN** | `Path_duvan()` | Letras D, U, V, A, N trazadas en secuencia |
+| Nombre **MORA** | `Path_mora()` | Letras M, O, R, A trazadas en secuencia |
+| Nombre **GUSTA** | `Path_gusta()` | Letras G, U, S, T, A trazadas en secuencia |
+| Decoración **Robot** | `Path_robot()` | Figura con cara, dos ojos y boca |
+
+Cada letra está compuesta por una secuencia densa de instrucciones `MoveL` a **60 mm/s** que aproximan las curvas y contornos sin necesidad de usar `MoveC`. Las transiciones entre letras se realizan mediante paths de 2 puntos (`Path_70` a `Path_220`) que elevan la herramienta de la superficie y la reposicionan en el punto de entrada de la siguiente letra sin dejar trazo.
 > 📷 Vista previa de las trayectorias diseñadas:
 
 ![Trayectorias](Sources/Trayectory%20Design.png)
