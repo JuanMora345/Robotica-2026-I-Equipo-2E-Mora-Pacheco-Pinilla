@@ -2,7 +2,9 @@
 
 <!-- ═══════════════════════  COSMIC HEADER  ═══════════════════════ -->
 
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:89f7fe,100:66a6ff&height=180&section=header&text=Robótica%20UNAL%20•%20Lab%2001&fontSize=36&desc=Trayectorias,%20E/S%20Digitales%20y%20Calibración%20•%20ABB%20IRB140&descSize=14&animation=twinkle" width="100%" />
+ 
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=180&section=header&text=robotic-ABB%20%E2%80%A2%20RobotStudio&fontSize=36&desc=Práctica%20de%20Laboratorio%20%E2%80%A2%20ABB%20IRB140&descSize=14&animation=fadeIn" width="100%" />
+
 
 
 <!-- ═══════════════════════  BADGE ROW  ════════════════════════════ -->
