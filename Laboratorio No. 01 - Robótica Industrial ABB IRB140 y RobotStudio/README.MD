@@ -3,7 +3,7 @@
 <!-- ═══════════════════════  COSMIC HEADER  ═══════════════════════ -->
 
  
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=180&section=header&text=robotic-ABB%20%E2%80%A2%20RobotStudio&fontSize=36&desc=Práctica%20de%20Laboratorio%20%E2%80%A2%20ABB%20IRB140&descSize=14&animation=fadeIn" width="100%" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=180&section=header&text=LAB01-ABB%20%E2%80%A2%20RobotStudio&fontSize=36&desc=Práctica%20de%20Laboratorio%20%E2%80%A2%20ABB%20IRB140&descSize=14&animation=fadeIn" width="100%" />
 
 
 
