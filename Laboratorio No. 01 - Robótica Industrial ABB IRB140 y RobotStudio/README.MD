@@ -358,9 +358,11 @@ Las trayectorias se diseñaron en **Fusion 360** combinando texto vectorizado y 
 
 <div align="center">
 
-<a href="https://www.youtube.com/watch?v=NOJoahuHHAE"https://img.shields.io/badge/%E2%96%B6%20Ver%20video-YouTube-FF0000?style=for-the-badge&amp;logo=youtube&amp;logoColor=white&amp;labelColor=0a0a1a" /></a>
-</div>
+<a href="https://www.youtube.com/watch?v=NOJoahuHHAE">
+  <img src="https://img.shields.io/badge/%E2%96%B6%20Ver%20video-YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white&labelColor=0a0a1a" />
+</a>
 
+</div>
 
 > Video de **implementación**.
 
