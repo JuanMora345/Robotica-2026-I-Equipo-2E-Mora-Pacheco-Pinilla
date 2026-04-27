@@ -224,17 +224,14 @@ Laboratorio No. 01 - Robótica Industrial ABB IRB140 y RobotStudio/Lab01Robotica
 ```
 ---
 
-## 🛠️ Diseño de la herramienta — *Marker*
+## 🛠️ Diseño de la herramienta 
 
 > 📂 Archivos disponibles en [`Design/`](./Design/): planos PDF de la herramienta diseñada.
 
 ### Descripción general
 
-El *Marker* es un portamarcador diseñado para ser **robusto, recargable y de fácil mantenimiento**. Se optó por un marcador recargable con cartucho reemplazable para **eliminar mecanismos con resortes**, reduciendo puntos de fallo.
+El portamarcador fue diseñado para ser **robusto y de fácil mantenimiento**. Se optó por un marcador convencional que con ayuda de un resorte interno permitía el deslizamiento suave del mismo, para el ensamble se decidió optar por realizarlo mediante un encaje a presión donde una tapa que tenía la función de tope para que el marcador no se cayera tenía un diámetro un poco mayor al de el espacio donde se almacena tanto el marcador como el resorte.
 
-### Funcionamiento de la punta
-
-La punta opera por **presión directa**: al posicionar el robot sobre la superficie, la punta se sumerge ligeramente en su alojamiento garantizando flujo de tinta y contacto. Sin resortes ni actuadores adicionales.
 
 ### Especificaciones de fabricación 3D
 
@@ -377,8 +374,9 @@ Cada letra está compuesta por una secuencia densa de instrucciones `MoveL` a **
 
 | Integrante | GitHub |
 |---|---|
-| **Samuel David Sanchez Cardenas** | <a href="https://github.com/samsanchezcar"><img src="https://img.shields.io/badge/GitHub-%40samsanchezcar-00F5FF?style=for-the-badge&amp;logo=github&amp;logoColor=white&amp;labelColor=0a0a1a" /></a> |
-| **Santiago Ávila** | <a href="https://github.com/search?q=Santiago+Avila"><img src="https://img.shields.io/badge/GitHub-Santiago%20%C3%81vila-7B2FBE?style=for-the-badge&amp;logo=github&amp;logoColor=white&amp;labelColor=0a0a1a" /></a> |
+| **Duvan Felipe Pacheco Rodriguez** | <a href="https://github.com/dupachecor"><img src="https://img.shields.io/badge/GitHub-%40samsanchezcar-00F5FF?style=for-the-badge&amp;logo=github&amp;logoColor=white&amp;labelColor=0a0a1a" /></a> |
+| **Juan Andrés Mora Henao** | <a href="https://github.com/JuanMora345"><img src="https://img.shields.io/badge/GitHub-Santiago%20%C3%81vila-7B2FBE?style=for-the-badge&amp;logo=github&amp;logoColor=white&amp;labelColor=0a0a1a" /></a> |
+| **Andrés Gustavo Pinilla Martínez** | <a href="https://github.com/AndresPinilla20"><img src="https://img.shields.io/badge/GitHub-Santiago%20%C3%81vila-7B2FBE?style=for-the-badge&amp;logo=github&amp;logoColor=white&amp;labelColor=0a0a1a" /></a> |
 
 </div>
 
