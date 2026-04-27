@@ -70,7 +70,7 @@ Estudiante de ingeniería Mecatrónica, con interés en el área de la inteligen
 
 ### Integrante 2
 <div align="center">
-  <img src="./assets/integrantes/integrante2.jpg" alt="Foto integrante 2" style="border-radius: 50%; width: 180px;"><br>
+  <img src="./assets/integrantes/Duvan_pacheco.jpeg" alt="Duvan Felipe Pacheco Rodríguez" style="border-radius: 50%; width: 180px;"><br>
 </div>
 
 - **Nombre completo:** Duvan Felipe Pacheco Rodríguez
@@ -86,7 +86,7 @@ Estudiante de ingeniería Mecatrónica, con interés en el área de la inteligen
 
 ### Integrante 3
 <div align="center">
-  <img src="./assets/integrantes/integrante3.jpg" alt="Foto integrante 3" style="border-radius: 50%; width: 180px;"><br>
+  <img src="./assets/integrantes/Juan_Mora.png" alt="Juan Andrés Mora Henao" style="border-radius: 50%; width: 180px;"><br>
 </div>
 
 - **Nombre completo:** Juan Andrés Mora Henao
