@@ -240,20 +240,13 @@ La punta opera por **presión directa**: al posicionar el robot sobre la superfi
 
 | Parámetro | Valor recomendado |
 |---|---|
-| **Material** | PLA (prototipo) / PETG-ABS (mayor resistencia) |
+| **Material** | PLA |
 | **Infill** | 25% — grid o gyroid |
 | **Perímetros (walls)** | 2–3 |
 | **Altura de capa** | 0.15–0.25 mm |
 | **Ensamble** | Press-fit — sin tornillos |
 | **Tolerancia press-fit** | ≈ 0.1–0.3 mm según impresora |
 
-### Proceso de calibración TCP
-
-La calibración del **Tool Center Point** se realizó con la técnica de los **4 puntos** (método estático): el robot registra cuatro orientaciones distintas apuntando al mismo punto físico de referencia fijo. RobotStudio calcula automáticamente la posición del TCP relativa al flanche.
-
-Se compararon los resultados obtenidos:
-- **Con el robot real** (IRC5 — 4 puntos físicos)
-- **En RobotStudio** (importando el modelo CAD de la herramienta)
 
 ---
 
