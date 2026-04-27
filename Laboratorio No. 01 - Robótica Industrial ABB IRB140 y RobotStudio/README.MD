@@ -359,7 +359,7 @@ Cada letra está compuesta por una secuencia densa de instrucciones `MoveL` a **
 
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/USUARIO/REPO/main/RUTA/AL/GIF/animacion.gif" alt="Demo" />
+<img src="https://github.com/JuanMora345/Robotica-2026-I-Equipo-2E-Mora-Pacheco-Pinilla/blob/main/Laboratorio%20No.%2001%20-%20Rob%C3%B3tica%20Industrial%20ABB%20IRB140%20y%20RobotStudio/Sources/LAB01GIF.gif" alt="Demo" />
 
 </div>
 
