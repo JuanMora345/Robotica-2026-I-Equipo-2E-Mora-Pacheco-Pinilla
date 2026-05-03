@@ -4,7 +4,7 @@
 
 <a href="https://robodk.com/"><img src="https://img.shields.io/badge/RoboDK-Latest-00F5FF?style=for-the-badge&logoColor=white&labelColor=0a0a1a" /></a>
 <a href="https://www.motoman.com/en-us/products/robots/industrial/assembly-handling/mh-series/mh6"><img src="https://img.shields.io/badge/Robot-Motoman%20MH6-7B2FBE?style=for-the-badge&logoColor=white&labelColor=0a0a1a" /></a>
-<a href="https://new.abb.com/products/robotics/robots/articulated-robots/irb-140"><img src="https://img.shields.io/badge/Referencia-ABB%20IRB140-FF006E?style=for-the-badge&logoColor=white&labelColor=0a0a1a" /></a>
+<a href="https://new.abb.com/products/robotics/robots/articulated-robots/irb-140"><img src="https://img.shields.io/badge/LENGUAJE-PYTHON-FF006E?style=for-the-badge&logoColor=white&labelColor=0a0a1a" /></a>
 <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-00F5FF?style=for-the-badge&labelColor=0a0a1a" /></a>
 
 </div>
