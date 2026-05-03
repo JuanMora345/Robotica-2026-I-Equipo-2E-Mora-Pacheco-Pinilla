@@ -61,7 +61,7 @@
 | **Velocidad máx. eje 5** | 380°/s | 360°/s |
 | **Velocidad máx. eje 6** | 550°/s | 450°/s |
 | **Controlador** | DX100 / YRC1000 | IRC5 |
-| **Lenguaje de programación** | INFORM III | RAPID |
+| **Lenguaje de programación** | PYTHON | RAPID |
 | **Montaje** | Suelo, techo, pared | Suelo, techo, pared |
 | **Aplicaciones típicas** | Manipulación, ensamble, soldadura, paletizado | Manipulación, ensamble, soldadura por arco, limpieza |
 | **Grado de protección** | IP54 | IP54 |
