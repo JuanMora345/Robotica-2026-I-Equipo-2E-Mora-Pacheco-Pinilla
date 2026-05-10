@@ -281,7 +281,7 @@ flowchart TD
 
 ## 🗺️ Plano de planta
 
-> ⚠️ *Adjuntar imagen o archivo PDF con el plano de planta de la celda, indicando la ubicación del Motoman MH6, el PC de control, la conexión Ethernet y los elementos periféricos.*
+> 📂 Archivos disponibles en [`Diagrams_Lab2/`](./Diagrams_Lab2/): plano PDF de planta.
 
 ---
 
