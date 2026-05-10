@@ -384,7 +384,7 @@ robot.MoveJ(targetHome)
 
 <div align="center">
 
-<a href="#">
+<a href="https://youtu.be/rmHUBdt_6uA">
   <img src="https://img.shields.io/badge/%E2%96%B6%20Ver%20video-YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white&labelColor=0a0a1a" />
 </a>
 
