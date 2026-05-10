@@ -71,91 +71,117 @@
 
 ## 🏠 Configuraciones Home1 y Home2 del Motoman MH6
 
-> ⚠️ *Esta sección requiere información adicional del laboratorio. Por favor comparte las posiciones articulares exactas de Home1 y Home2 observadas en el pendant.*
+El manipulador Motoman MH6 tiene dos posiciones de referencia predefinidas con propósitos distintos dentro del ciclo de operación. Los valores se expresan en **pulsos de encoder** (unidad interna del controlador DX100), no en grados.
 
-### Descripción general
+### Home1 — "Work Home Position"
 
-El manipulador Motoman MH6 tiene dos posiciones de referencia predefinidas denominadas **Home1** y **Home2**, cada una con una configuración articular específica y un propósito distinto dentro del ciclo de operación.
+Es la posición de reposo principal del robot. Al alcanzarla, el manipulador se **recoge sobre sí mismo**, con los eslabones superpuestos verticalmente, minimizando el espacio ocupado en la celda.
 
-### Home1
+| Articulación | Valor ORIGIN (pulsos) | Valor CURRENT (pulsos) |
+|---|---|---|
+| S (eje 1) | -115290 | -115290 |
+| L (eje 2) | 0 | 0 |
+| U (eje 3) | -111622 | -111623 |
+| R (eje 4) | 1 | -1 |
+| B (eje 5) | 42647 | 42647 |
+| T (eje 6) | 1392 | 1393 |
 
-| Articulación | Ángulo |
-|---|---|
-| S (eje 1) | — |
-| L (eje 2) | — |
-| U (eje 3) | — |
-| R (eje 4) | — |
-| B (eje 5) | — |
-| T (eje 6) | — |
+### Home2 — "Second Home Position"
 
-> *Completar con los valores reales observados en banco.*
+Es una posición de trabajo de referencia secundaria. El robot adopta una **configuración en L invertida**, con el brazo extendido y la herramienta a mayor altura apuntando hacia abajo, lista para iniciar ciclos de trabajo.
 
-### Home2
-
-| Articulación | Ángulo |
-|---|---|
-| S (eje 1) | — |
-| L (eje 2) | — |
-| U (eje 3) | — |
-| R (eje 4) | — |
-| B (eje 5) | — |
-| T (eje 6) | — |
-
-> *Completar con los valores reales observados en banco.*
+| Articulación | Valor SPECIFIED (pulsos) | Valor CURRENT (pulsos) | Diferencia |
+|---|---|---|---|
+| S (eje 1) | 0 | 0 | 0 |
+| L (eje 2) | 2037 | 2037 | 0 |
+| U (eje 3) | 2359 | 2359 | 0 |
+| R (eje 4) | -121 | -121 | 0 |
+| B (eje 5) | 0 | 0 | 0 |
+| T (eje 6) | 1392 | 1392 | 0 |
 
 ### ¿Cuál posición es mejor?
 
-> *Completar con la justificación del equipo según lo observado en laboratorio.*
+**Home2 resulta más conveniente como punto de inicio de ciclos de trabajo**, por las siguientes razones:
+
+- La herramienta ya se encuentra orientada hacia abajo y a una altura operativa, reduciendo el recorrido necesario para llegar a la primera posición de trazado.
+- La configuración en L invertida aleja el brazo del cuerpo del robot, disminuyendo el riesgo de colisiones internas al iniciar movimientos.
+- Las diferencias entre los valores *Specified* y *Current* son todas cero, lo que indica que el robot llegó con precisión exacta a esa posición, confirmando su estabilidad como referencia.
+
+**Home1 es preferible como posición de reposo y seguridad**, ya que al recoger todos los eslabones minimiza el espacio ocupado y reduce el par gravitacional sobre las articulaciones durante paradas prolongadas.
 
 ---
 
 ## 🕹️ Movimientos manuales — procedimiento y teclas
 
-> ⚠️ *Esta sección requiere información del pendant físico observada en laboratorio.*
+El pendant DX100 del Motoman MH6 permite operar en distintos modos de movimiento manual. La tecla central para gestionar esto es **COORD** (Coordenadas).
 
 ### Cambio entre modos de movimiento
 
-El pendant del Motoman MH6 permite operar en dos modos principales de movimiento manual:
-
 | Modo | Descripción | Tecla de acceso |
 |---|---|---|
-| **Articular (JOINT)** | Mueve cada eje de forma independiente | — |
-| **Cartesiano (XYZ)** | Mueve el TCP en el espacio cartesiano | — |
+| **JOINT (Articular)** | Mueve cada eje de forma independiente. S, L, U, R, B, T | Presionar **COORD** hasta seleccionar `JOINT` |
+| **RECTANGULAR (Cartesiano)** | Mueve el TCP en el espacio cartesiano absoluto (X, Y, Z) | Presionar **COORD** hasta seleccionar `RECTANGULAR` |
+| **CYLINDRICAL** | Movimiento en coordenadas cilíndricas | Presionar **COORD** hasta seleccionar `CYLINDRICAL` |
+| **TOOL** | Movimiento relativo a la herramienta activa | Presionar **COORD** hasta seleccionar `TOOL` |
 
-> *Completar con las teclas exactas observadas en el pendant durante el laboratorio.*
+Cada vez que se presiona **COORD** el sistema rota cíclicamente entre los modos disponibles. El modo activo se indica en el **área de estado** de la pantalla del pendant.
 
-### Traslaciones en ejes X, Y, Z
+### Traslaciones en ejes X, Y, Z (modo RECTANGULAR)
 
-> *Describir el procedimiento observado en banco para realizar traslaciones en cada eje.*
+Una vez seleccionado el modo `RECTANGULAR`:
 
-### Rotaciones en ejes X, Y, Z
+1. Activar los servomotores manteniendo presionado el **interruptor de hombre muerto** (Dead Man Switch) en el dorso del pendant.
+2. Usar las **teclas de ejes** del pendant:
 
-> *Describir el procedimiento observado en banco para realizar rotaciones en cada eje.*
+| Eje | Dirección positiva | Dirección negativa |
+|---|---|---|
+| X | Tecla `X+` | Tecla `X-` |
+| Y | Tecla `Y+` | Tecla `Y-` |
+| Z | Tecla `Z+` | Tecla `Z-` |
+
+### Rotaciones en ejes X, Y, Z (modo RECTANGULAR)
+
+En el mismo modo `RECTANGULAR`, las rotaciones del TCP se controlan con:
+
+| Eje | Rotación positiva | Rotación negativa |
+|---|---|---|
+| Rx | Tecla `Rx+` | Tecla `Rx-` |
+| Ry | Tecla `Ry+` | Tecla `Ry-` |
+| Rz | Tecla `Rz+` | Tecla `Rz-` |
+
+> En modo JOINT, las mismas teclas controlan directamente cada articulación: S, L, U, R, B, T en sus direcciones positiva y negativa.
 
 ---
 
 ## ⚡ Niveles de velocidad para movimiento manual
 
-> ⚠️ *Esta sección requiere información del pendant físico observada en laboratorio.*
-
 ### Niveles disponibles
 
-| Nivel | Denominación | Velocidad aproximada |
-|---|---|---|
-| 1 | — | — |
-| 2 | — | — |
-| 3 | — | — |
-| 4 | — | — |
+El Motoman MH6 con controlador DX100 dispone de **8 niveles de velocidad** para movimiento manual, organizados de menor a mayor:
 
-> *Completar con los niveles reales del Motoman MH6 (típicamente: INCHING, LOW, MEDIUM, HIGH o equivalentes).*
+| Nivel | Denominación | Descripción |
+|---|---|---|
+| 1 | **INCHING** | Movimiento mínimo paso a paso — máxima precisión |
+| 2 | **LOW LOW** | Velocidad muy baja |
+| 3 | **LOW** | Velocidad baja |
+| 4 | **MEDIUM LOW** | Velocidad media-baja |
+| 5 | **MEDIUM** | Velocidad media |
+| 6 | **MEDIUM HIGH** | Velocidad media-alta |
+| 7 | **HIGH** | Velocidad alta |
+| 8 | **FULL SPEED** | Velocidad máxima permitida en modo manual |
 
 ### ¿Cómo se cambia el nivel de velocidad?
 
-> *Describir el procedimiento y las teclas usadas en el pendant para cambiar entre niveles.*
+El cambio de velocidad se realiza mediante las teclas de **flecha arriba** y **flecha abajo** ubicadas en el lateral izquierdo del pendant DX100:
+
+- **Flecha arriba (▲):** incrementa un nivel de velocidad.
+- **Flecha abajo (▼):** reduce un nivel de velocidad.
+
+El cambio es inmediato y no requiere detener el movimiento en curso.
 
 ### ¿Cómo se identifica el nivel en la pantalla?
 
-> *Describir el indicador visual en la interfaz del pendant que muestra el nivel de velocidad activo.*
+El nivel de velocidad activo se muestra en el **área de estado** de la pantalla del pendant, en la esquina superior, mediante un indicador numérico o la etiqueta del nivel (LOW, MEDIUM, HIGH, etc.). El valor se actualiza en tiempo real cada vez que se presiona una tecla de cambio de velocidad.
 
 ---
 
@@ -174,16 +200,17 @@ RoboDK es una plataforma de simulación y programación offline compatible con m
 
 ### ¿Cómo se comunica RoboDK con el manipulador Motoman?
 
-RoboDK establece comunicación con el Motoman MH6 a través de una conexión **Ethernet (TCP/IP)** entre el PC y el controlador del robot. El proceso general es el siguiente:
+RoboDK establece comunicación con el Motoman MH6 a través de una conexión **Ethernet (TCP/IP)** entre el PC y el controlador DX100. El proceso es el siguiente:
 
-1. El PC con RoboDK y el controlador DX100/YRC1000 del Motoman se conectan a la misma red local.
-2. RoboDK utiliza un **driver específico para Yaskawa** que traduce los comandos de movimiento al protocolo que entiende el controlador.
-3. Cuando se ejecuta una trayectoria en modo "Run on robot", RoboDK envía instrucciones de posición y velocidad al controlador en tiempo real, quien las convierte en movimientos de los servomotores de cada articulación.
-4. El robot responde con retroalimentación de posición, permitiendo a RoboDK monitorear el estado del movimiento.
+1. El PC con RoboDK y el controlador DX100 del Motoman se conectan a la misma red local.
+2. El controlador debe estar configurado en **modo REMOTE** (selector de modo en el pendant en posición REMOTE).
+3. RoboDK utiliza un **driver específico para Yaskawa/Motoman** que traduce los comandos al protocolo del controlador.
+4. En el código Python, la conexión se establece explícitamente con `robot.Connect()` y se verifica con `robot.ConnectedState()`.
+5. RoboDK envía instrucciones de posición (`MoveJ`, `MoveL`) al controlador, quien las convierte en movimientos de los servomotores articulación por articulación.
 
 ### ¿Qué hace RoboDK para mover el manipulador?
 
-RoboDK calcula la cinemática inversa de cada punto de la trayectoria, determina los ángulos articulares necesarios y los transmite al controlador a través del driver de comunicación. El controlador ejecuta los movimientos interpolando entre puntos sucesivos y controlando la velocidad de cada eje.
+RoboDK calcula la **cinemática inversa** de cada punto de la trayectoria, determina los ángulos articulares necesarios y los transmite al controlador a través del driver de comunicación. El controlador DX100 ejecuta los movimientos interpolando entre puntos sucesivos, controlando la velocidad de cada eje y gestionando la seguridad del movimiento.
 
 ---
 
@@ -194,19 +221,18 @@ RoboDK calcula la cinemática inversa de cada punto de la trayectoria, determina
 | **Fabricante** | RoboDK Inc. | ABB |
 | **Compatibilidad de robots** | +500 marcas y modelos | Exclusivo para robots ABB |
 | **Lenguaje nativo** | Python (API) + post-procesadores | RAPID |
-| **Licenciamiento** | De pago con versión de prueba gratuita | Gratuito para simulación básica; licencias avanzadas de pago |
+| **Licenciamiento** | De pago con versión de prueba gratuita | Gratuito para simulación básica |
 | **Curva de aprendizaje** | Media — interfaz intuitiva | Media-alta — mayor profundidad para ABB |
 | **Fidelidad de simulación** | Alta — cinemática real del robot | Muy alta — gemelo digital certificado por ABB |
 | **Control en tiempo real** | Sí, mediante driver y Ethernet | Sí, mediante OPC-UA y otros protocolos |
 | **Generación de código** | Código nativo para múltiples fabricantes | Solo RAPID para ABB |
-| **Integración con visión artificial** | Limitada | Avanzada mediante ABB IRB y complementos |
 | **Uso típico** | Entornos multi-marca, educación, integración rápida | Celdas ABB de alta precisión, gemelo digital |
 
 ### ¿Qué significa cada herramienta?
 
-**RoboDK** representa una solución de programación offline **universal e independiente del fabricante**. Su principal valor es la flexibilidad: permite trabajar con robots de distintas marcas desde un único entorno, lo que resulta especialmente útil en entornos educativos y en integraciones donde coexisten múltiples robots de diferentes fabricantes. La integración nativa con Python la convierte en una herramienta poderosa para automatizar tareas complejas.
+**RoboDK** representa una solución de programación offline **universal e independiente del fabricante**. Su principal valor es la flexibilidad: permite trabajar con robots de distintas marcas desde un único entorno y automatizar trayectorias complejas mediante Python, como se demostró en este laboratorio con la generación de la curva de la mariposa y el trazado de nombres mediante la librería `matplotlib.textpath`.
 
-**RobotStudio** representa el entorno oficial de ABB, orientado a obtener el **máximo nivel de fidelidad y precisión** para robots de esa marca. Al ser desarrollado por el mismo fabricante, ofrece un gemelo digital exacto del robot real, con acceso completo a las funcionalidades del controlador IRC5 y la posibilidad de simular comportamientos que otros entornos no pueden replicar fielmente.
+**RobotStudio** representa el entorno oficial de ABB, orientado a obtener el **máximo nivel de fidelidad y precisión** para robots de esa marca. Al ser desarrollado por el mismo fabricante, ofrece un gemelo digital exacto del robot real y acceso completo a todas las funcionalidades del controlador IRC5. Fue la herramienta utilizada en el Laboratorio 01 con el IRB140.
 
 ---
 
