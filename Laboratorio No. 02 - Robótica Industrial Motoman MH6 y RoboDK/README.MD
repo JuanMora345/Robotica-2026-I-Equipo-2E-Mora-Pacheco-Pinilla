@@ -364,7 +364,7 @@ robot.MoveL(transl(x, y, z_surface - z_safe))
 robot.MoveJ(targetHome)
 ```
 
-> El código completo incluyendo el trazado de nombres con `matplotlib.textpath` se encuentra en el archivo `polar_trajectory.py` adjunto en el repositorio.
+> El código completo incluyendo el trazado de nombres con `matplotlib.textpath` se encuentra en el archivo `Code_Lab02.py` adjunto en el repositorio.
 
 ---
 
