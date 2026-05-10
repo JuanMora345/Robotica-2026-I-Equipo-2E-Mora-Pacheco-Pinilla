@@ -287,71 +287,84 @@ flowchart TD
 
 ## 🌀 Trayectoria polar — código y simulación
 
-### Fundamento matemático
+### Fundamento matemático — Curva de la Mariposa
 
-Una **curva polar** se define mediante una función de la forma `r = f(θ)`, donde `r` es la distancia al origen y `θ` es el ángulo. Para este laboratorio se implementó una **rosa polar** definida por:
+La figura implementada es la **curva de la mariposa**, una curva polar definida por:
 
 ```
-r(θ) = a · cos(k · θ)
+r(θ) = e^cos(θ) − 2·cos(4θ) + sin⁵(θ/12)
 ```
 
-Donde `a` define la amplitud y `k` el número de pétalos. La conversión a coordenadas cartesianas se realiza mediante:
+La curva requiere un barrido de **θ ∈ [0, 12π]** para completar todos los detalles de las alas. La conversión a coordenadas cartesianas se realiza mediante:
 
 ```
 x = r(θ) · cos(θ)
-y = r(θ) · sen(θ)
+y = r(θ) · sin(θ)
 ```
+
+Un factor de escala `A = 30` mm se aplica a `r(θ)` para adaptar la figura al espacio de trabajo del Motoman MH6.
+
+### Descripción del código Python
+
+El script desarrollado en RoboDK estructura la ejecución en las siguientes etapas:
+
+1. **Conexión al robot:** se inicializa `Robolink()`, se selecciona el robot mediante `ItemUserPick` y se establece la conexión física con `robot.Connect()`. Se verifica el estado con `robot.ConnectedState()`.
+2. **Configuración del frame de trabajo:** se carga el frame `"Frame_from_Target1"` previamente definido en la estación y se asigna al robot con `robot.setPoseFrame(frame)`.
+3. **Parámetros de movimiento:** velocidad de 300 mm/s y blending de radio 5 mm.
+4. **Retorno a Home:** el robot se desplaza primero al target `"TargetHome"` definido en la estación mediante `MoveJ`.
+5. **Trazado de la mariposa:** se generan `n_points = 40` puntos distribuidos en `[0, 12π]`. Para cada punto se calcula `r`, luego `(x, y)` y se ejecuta un `MoveL` en el plano del frame a `z_surface = 0`. La aproximación y salida se realizan a `z_safe = 50 mm`.
+6. **Trazado de nombres:** los nombres `["Duvan", "Mora", "Gustavo"]` se generan usando `matplotlib.textpath.TextPath` con tamaño de fuente 35. Cada letra se traza con `MoveL` punto a punto, con levantamiento de herramienta entre letras. El texto se rota 90° y se posiciona a la derecha de la figura.
+7. **Retorno final a Home.**
 
 ### Código Python desarrollado en RoboDK
 
-> ⚠️ *El código completo se encuentra adjunto en el repositorio. A continuación se muestra la estructura general.*
+El código completo se encuentra adjunto en el repositorio. A continuación se muestra el fragmento principal de la curva de la mariposa:
 
 ```python
 from robodk.robolink import *
 from robodk.robomath import *
-import numpy as np
+import math
 
-# Inicializar RoboDK
 RDK = Robolink()
+robot = RDK.ItemUserPick("Selecciona un robot", ITEM_TYPE_ROBOT)
+robot.Connect()
 
-# Seleccionar el robot
-robot = RDK.Item('Motoman MH6', ITEM_TYPE_ROBOT)
+frame = RDK.Item("Frame_from_Target1", ITEM_TYPE_FRAME)
+robot.setPoseFrame(frame)
+robot.setSpeed(300)
+robot.setRounding(5)
 
-# Parámetros de la trayectoria polar
-# r(θ) = a * cos(k * θ)
-a = 150      # amplitud en mm
-k = 3        # número de pétalos
-n_puntos = 360
-z_trabajo = 300  # altura de trabajo en mm
+A = 30          # Escala en mm
+z_surface = 0
+z_safe = 50
+num_points = 40
+full_turn = 12 * math.pi
 
-# Generar puntos de la trayectoria
-thetas = np.linspace(0, 2 * np.pi, n_puntos)
+# Retorno a Home
+targetHome = RDK.Item("TargetHome", ITEM_TYPE_TARGET)
+robot.MoveJ(targetHome)
 
-for theta in thetas:
-    r = a * np.cos(k * theta)
-    x = r * np.cos(theta)
-    y = r * np.sin(theta)
-    z = z_trabajo
+# Aproximación al centro
+robot.MoveJ(transl(0, 0, z_surface - z_safe))
+robot.MoveL(transl(0, 0, z_surface))
 
-    # Definir pose cartesiana
-    pose = transl(x, y, z)
+# Trazado de la curva de la mariposa
+for i in range(num_points + 1):
+    theta = full_turn * (i / num_points)
+    r = A * (math.exp(math.cos(theta))
+             - 2 * math.cos(4 * theta)
+             + math.pow(math.sin(theta / 12), 5))
+    x = r * math.cos(theta)
+    y = r * math.sin(theta)
+    robot.MoveL(transl(x, y, z_surface))
 
-    # Mover el robot al punto
-    robot.MoveL(pose)
+robot.MoveL(transl(x, y, z_surface - z_safe))
 
-print("Trayectoria polar completada.")
+# Retorno final
+robot.MoveJ(targetHome)
 ```
 
-> El código completo con parámetros exactos, configuración del TCP y gestión de errores se encuentra en el archivo adjunto dentro del repositorio.
-
-### Nombres de los integrantes del equipo
-
-> ⚠️ *Completar con los nombres reales del equipo.*
-
-| Integrante | Rol |
-|---|---|
-| — | — |
-| — | — |
+> El código completo incluyendo el trazado de nombres con `matplotlib.textpath` se encuentra en el archivo `polar_trajectory.py` adjunto en el repositorio.
 
 ---
 
