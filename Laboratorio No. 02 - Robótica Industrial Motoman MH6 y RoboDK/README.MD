@@ -212,24 +212,44 @@ RoboDK calcula la cinemática inversa de cada punto de la trayectoria, determina
 
 ## 🔁 Diagrama de flujo de acciones del robot
 
-> ⚠️ *Completar con el diagrama de flujo correspondiente a la trayectoria polar implementada.*
 
 ```mermaid
 flowchart TD
-    A([Inicio]) --> B[Inicializar RoboDK y cargar modelo Motoman MH6]
-    B --> C[Definir parámetros de la trayectoria polar]
-    C --> D[Calcular puntos de la rosa polar en coordenadas cartesianas]
-    D --> E[Generar instrucciones de movimiento en RoboDK]
-    E --> F[Simular trayectoria virtualmente en RoboDK]
-    F --> G{¿Simulación correcta?}
-    G -- No --> C
-    G -- Sí --> H[Conectar RoboDK con el controlador Motoman vía Ethernet]
-    H --> I[Enviar trayectoria al robot físico]
-    I --> J[Ejecutar movimiento desde posición Home]
-    J --> K[Trazar trayectoria polar completa]
-    K --> L[Regresar a posición Home]
-    L --> M([Fin])
+    A([Inicio del script]) --> B[Inicializar RoboDK con Robolink]
+    B --> C[Seleccionar robot con ItemUserPick]
+    C --> D[Conectar al robot físico con robot.Connect]
+    D --> E{¿Conexión exitosa?}
+    E -- No --> F([Error: verificar modo REMOTE y red Ethernet])
+    E -- Sí --> G[Cargar Frame_from_Target1]
+    G --> H[Asignar frame al robot y configurar velocidad 300 mm/s y blending 5 mm]
+    H --> I[MoveJ a TargetHome]
+    I --> J[MoveJ al centro de la figura a altura segura z_safe = 50 mm]
+    J --> K[MoveL bajar a superficie z = 0]
+
+    K --> L{Bucle: i = 0 hasta num_points = 40}
+    L --> M[Calcular θ = 12π · i / num_points]
+    M --> N["Calcular r = A · ecos θ − 2·cos 4θ + sin⁵ θ/12"]
+    N --> O[Calcular x = r·cos θ, y = r·sen θ]
+    O --> P[MoveL al punto x, y, z_surface]
+    P --> L
+    L -- Bucle terminado --> Q[MoveL subir a altura segura z_safe]
+
+    Q --> R{Bucle: nombre en Duvan, Mora, Gustavo}
+    R --> S[Generar contorno del nombre con matplotlib TextPath]
+    S --> T{Bucle: polígono en contornos de la letra}
+    T --> U[MoveL al inicio del polígono a z_safe — herramienta alzada]
+    U --> V[MoveL bajar a z_surface — inicio de trazo]
+    V --> W{Bucle: punto en polígono}
+    W --> X[Transformar punto: escala, espejo, rotación 90°, traslación]
+    X --> Y[MoveL al punto transformado]
+    Y --> W
+    W -- Polígono terminado --> Z[MoveL subir a z_safe — herramienta alzada]
+    Z --> T
+    T -- Letra terminada --> R
+    R -- Todos los nombres trazados --> AA[MoveJ a TargetHome]
+    AA --> AB([Fin del script])
 ```
+
 
 ---
 
