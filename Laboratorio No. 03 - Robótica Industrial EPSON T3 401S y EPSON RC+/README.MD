@@ -4,7 +4,6 @@
 
 <a href="https://www.epson.com/en_US/products/robots/"><img src="https://img.shields.io/badge/EPSON%20RC%2B-7.0-00F5FF?style=for-the-badge&logoColor=white&labelColor=0a0a1a" /></a>
 <a href="https://www.epson.com/en_US/products/robots/scara/t3/s/SPT_T3-401S"><img src="https://img.shields.io/badge/Robot-EPSON%20T3--401S-7B2FBE?style=for-the-badge&logoColor=white&labelColor=0a0a1a" /></a>
-
 <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-00F5FF?style=for-the-badge&labelColor=0a0a1a" /></a>
 
 </div>
